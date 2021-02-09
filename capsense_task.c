@@ -285,7 +285,6 @@ static uint32_t capsense_init(void)
     /* Initialize the CapSense deep sleep callback functions. */
     /* See the "MTB CAT1 Peripheral driver library documentation > PDL API Reference > SysPM"
      * link in the Quick Panel Documentation for information on setting up the SysPm callbacks */
-    Cy_CapSense_Enable(&cy_capsense_context);
     Cy_SysPm_RegisterCallback(&capsense_deep_sleep_cb);
     /* Register end of scan callback */
     status = Cy_CapSense_RegisterCallback(CY_CAPSENSE_END_OF_SCAN_E,
