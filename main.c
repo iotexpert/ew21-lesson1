@@ -8,16 +8,7 @@
 
 #include "capsense_task.h"
 
-/* Priorities of user tasks in this project. configMAX_PRIORITIES is defined in
- * the FreeRTOSConfig.h and higher priority numbers denote high priority tasks.
- * The idle task has a priority of 0. */
-#define TASK_CAPSENSE_PRIORITY      (configMAX_PRIORITIES - 1)
-
-/* Stack sizes of user tasks in this project (in WORDs) */
-#define TASK_CAPSENSE_STACK_SIZE    (configMINIMAL_STACK_SIZE)
-
 volatile int uxTopUsedPriority ;
-TaskHandle_t capSenseTaskHandle;
 
 int main(void)
 {
@@ -33,7 +24,7 @@ int main(void)
 
     printf("Application Started\n");
 
-    xTaskCreate(task_capsense, "CapSense Task", TASK_CAPSENSE_STACK_SIZE, NULL, TASK_CAPSENSE_PRIORITY, &capSenseTaskHandle);
+    xTaskCreate(capsense_task, "CapSense Task", configMINIMAL_STACK_SIZE, NULL, (configMAX_PRIORITIES - 1), 0);
     vTaskStartScheduler();
 }
 
